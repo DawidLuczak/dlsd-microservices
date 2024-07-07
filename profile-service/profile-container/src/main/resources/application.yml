@@ -1,0 +1,29 @@
+server:
+  port: 8182
+
+logging:
+  level:
+    pl.dlsd.profile.system: DEBUG
+
+spring:
+  jpa:
+    open-in-view: false
+    show-sql: true
+    ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:1111/postgres?currentSchema=profile&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+    schema: classpath:init-schema.sql
+    initialize: true
+    initialization-mode: always
+  mvc:
+    favicon:
+      enabled: false
+
+services:
+  host: http://localhost:8182
+  profile-system-web-app: http://localhost:4200

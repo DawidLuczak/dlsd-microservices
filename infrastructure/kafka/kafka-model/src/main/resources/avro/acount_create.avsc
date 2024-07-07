@@ -1,0 +1,14 @@
+{
+    "namespace": "pl.dlsd.profile.system.kafka.account.avro.model",
+    "type": "record",
+    "name": "AccountCreateAvroModel",
+    "fields": [
+        {
+            "name": "id",
+            "type": {
+                "type": "string",
+                "logicalType": "uuid"
+            }
+        }
+    ]
+}
