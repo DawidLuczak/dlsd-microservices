@@ -1,0 +1,54 @@
+server:
+  port: 8180
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+#      default-filters:
+#        - TokenRelay
+#      routes:
+#        - id: account-service
+#          uri: lb://account-service
+#          predicates:
+#            - Path=/home/**
+  eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+
+#resilience4j:
+#  circuitbreaker:
+#    configs:
+#      default:
+#        registerHealthIndicator: true
+#        minimumNumberOfCalls: 10
+#    instances:
+#      cbTest:
+#        baseConfig: default
+#    timelimiter:
+#      configs:
+#        default:
+#          timeout-duration: 5s
+#          cancel-running-future: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+
+
+security:
+  jwt:
+    secret-key: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+    expiration-time: 3600000

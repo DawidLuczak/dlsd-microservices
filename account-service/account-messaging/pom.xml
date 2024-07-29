@@ -6,7 +6,7 @@
     <parent>
         <groupId>pl.dlsd</groupId>
         <artifactId>account-service</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>account-messaging</artifactId>
@@ -31,6 +31,10 @@
         <dependency>
             <groupId>pl.dlsd</groupId>
             <artifactId>kafka-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 </project>

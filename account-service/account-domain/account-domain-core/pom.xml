@@ -6,7 +6,7 @@
     <parent>
         <groupId>pl.dlsd</groupId>
         <artifactId>account-domain</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>account-domain-core</artifactId>
@@ -17,7 +17,11 @@
     <dependencies>
         <dependency>
             <groupId>pl.dlsd</groupId>
-            <artifactId>common-domain</artifactId>
+            <artifactId>common-domain-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 

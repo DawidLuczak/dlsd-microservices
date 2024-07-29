@@ -1,18 +1,24 @@
 server:
-  port: 8183
+  port: 8181
 
 logging:
   level:
     pl.dlsd.profile.system: DEBUG
 
 spring:
+  application:
+    name: account-service
+  eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
   jpa:
     open-in-view: false
     show-sql: true
     ddl-auto: none
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=profile&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    url: jdbc:postgresql://localhost:1111/postgres?currentSchema=profile&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
@@ -23,6 +29,25 @@ spring:
   mvc:
     favicon:
       enabled: false
+  main:
+    allow-bean-definition-overriding: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dawid.luczak.it@gmail.com
+    password: ckye evxb lngt awul
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enabled: true
+            required: true
+    debug: true
+  messages:
+    basename: i18n/messages
 
 kafka-config:
   bootstrap-servers: localhost:19092, localhost:29092, localhost:39092
@@ -61,5 +86,16 @@ kafka-consumer-config:
   poll-timeout-ms: 150
 
 services:
-  host: http://localhost:8183
+  host: http://localhost:8181
   profile-system-web-app: http://localhost:4200
+  api-gateway: http://localhost:8180
+
+dlsd:
+  mail:
+    from: dlsd-account@localhost
+    baseUrl: http://localhost:8181
+
+security:
+  jwt:
+    secret-key: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+    expiration-time: 3600000

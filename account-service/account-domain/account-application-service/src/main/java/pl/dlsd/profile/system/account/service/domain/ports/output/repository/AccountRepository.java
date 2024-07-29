@@ -11,11 +11,13 @@ public interface AccountRepository {
 
     Optional<Account> findById(UUID accountId);
 
-    Optional<Account> findByEmail(String email);
-
     boolean existsByEmail(String email);
 
     Optional<Account> findByEmailAndPassword(String email, String password);
 
     List<Account> findAll();
+
+    Optional<Account> findOneByActivationKey(String activationKey);
+
+    Optional<Account> findOneByEmail(String email);
 }

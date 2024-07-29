@@ -34,18 +34,13 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Optional<Account> findByEmail(String email) {
-        return Optional.empty();
-    }
-
-    @Override
     public boolean existsByEmail(String email) {
         return accountJpaRepository.existsAccountByEmail(email);
     }
 
     @Override
     public Optional<Account> findByEmailAndPassword(String email, String password) {
-        return accountJpaRepository.findByEmailAndPassword(email, password).map(accountDataAccessMapper::accountEntityToAccount);
+        return accountJpaRepository.findOneByEmailAndPassword(email, password).map(accountDataAccessMapper::accountEntityToAccount);
     }
 
     @Override
@@ -54,5 +49,17 @@ public class AccountRepositoryImpl implements AccountRepository {
                 .stream()
                 .map(accountDataAccessMapper::accountEntityToAccount)
                 .toList();
+    }
+
+    @Override
+    public Optional<Account> findOneByActivationKey(String activationKey) {
+        return accountJpaRepository.findOneByActivationKey(activationKey)
+                .map(accountDataAccessMapper::inactiveAccountEntityToActiveAccount)
+                .map(accountDataAccessMapper::accountEntityToAccount);
+    }
+
+    @Override
+    public Optional<Account> findOneByEmail(String email) {
+        return accountJpaRepository.findOneByEmail(email).map(accountDataAccessMapper::accountEntityToAccount);
     }
 }

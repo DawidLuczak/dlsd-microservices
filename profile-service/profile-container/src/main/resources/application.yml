@@ -6,6 +6,12 @@ logging:
     pl.dlsd.profile.system: DEBUG
 
 spring:
+  application:
+    name: profile-service
+  eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
   jpa:
     open-in-view: false
     show-sql: true

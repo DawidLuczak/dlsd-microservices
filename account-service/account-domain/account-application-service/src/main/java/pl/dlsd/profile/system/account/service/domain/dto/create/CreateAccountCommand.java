@@ -13,4 +13,6 @@ public class CreateAccountCommand {
     private final String email;
     @NotNull
     private final String password;
+    @NotNull
+    private final String passwordConfirm;
 }

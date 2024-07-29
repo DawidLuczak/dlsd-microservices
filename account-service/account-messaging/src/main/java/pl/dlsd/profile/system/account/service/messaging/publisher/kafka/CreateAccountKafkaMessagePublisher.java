@@ -9,7 +9,6 @@ import pl.dlsd.profile.system.account.service.domain.event.AccountCreatedEvent;
 import pl.dlsd.profile.system.account.service.domain.ports.output.message.publisher.AccountCreatedMessagePublisher;
 import pl.dlsd.profile.system.account.service.messaging.mapper.AccountMessagingDataMapper;
 import pl.dlsd.profile.system.kafka.account.avro.model.AccountCreateAvroModel;
-import pl.dlsd.profile.system.kafka.producer.service.KafkaProducer;
 
 import java.util.function.BiConsumer;
 
@@ -19,12 +18,11 @@ import java.util.function.BiConsumer;
 public class CreateAccountKafkaMessagePublisher implements AccountCreatedMessagePublisher {
     private final AccountMessagingDataMapper accountMessagingDataMapper;
     private final AccountServiceConfigData accountServiceConfigData;
-    private final KafkaProducer<String, AccountCreateAvroModel> kafkaProducer;
+//    private final KafkaProducer<String, AccountCreateAvroModel> kafkaProducer;
 
-    public CreateAccountKafkaMessagePublisher(AccountMessagingDataMapper accountMessagingDataMapper, AccountServiceConfigData accountServiceConfigData, KafkaProducer<String, AccountCreateAvroModel> kafkaProducer) {
+    public CreateAccountKafkaMessagePublisher(AccountMessagingDataMapper accountMessagingDataMapper, AccountServiceConfigData accountServiceConfigData) {
         this.accountMessagingDataMapper = accountMessagingDataMapper;
         this.accountServiceConfigData = accountServiceConfigData;
-        this.kafkaProducer = kafkaProducer;
     }
 
     @Override
@@ -33,7 +31,7 @@ public class CreateAccountKafkaMessagePublisher implements AccountCreatedMessage
         log.info("Received AccountCreatedEvent for account id: {}", accountId);
 
         AccountCreateAvroModel accountCreateAvroModel = accountMessagingDataMapper.accountCreatedEventToAccountCreateAvroModel(domainEvent);
-        kafkaProducer.send(accountServiceConfigData.getAccountTopicName(), accountId, accountCreateAvroModel, kafkaCallback());
+//        kafkaProducer.send(accountServiceConfigData.getAccountTopicName(), accountId, accountCreateAvroModel, kafkaCallback());
     }
 
     private BiConsumer<SendResult<String, AccountCreateAvroModel>, Throwable> kafkaCallback() {
