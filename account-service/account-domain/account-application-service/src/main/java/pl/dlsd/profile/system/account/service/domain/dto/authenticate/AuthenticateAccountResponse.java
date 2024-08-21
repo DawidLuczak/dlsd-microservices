@@ -11,5 +11,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AuthenticateAccountResponse {
     private String token;
+    private String username;
     private int expiresIn;
 }

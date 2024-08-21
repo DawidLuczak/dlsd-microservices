@@ -1,6 +1,8 @@
 package pl.dlsd.profile.system.gateway.service.config;
 
 import io.jsonwebtoken.Claims;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -17,6 +19,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class AuthenticationFilter implements GatewayFilter {
 
+    private static final Logger log = LoggerFactory.getLogger(AuthenticationFilter.class);
     private final RouterValidator routerValidator;
     private final JwtUtil jwtUtil;
 
@@ -38,11 +41,13 @@ public class AuthenticationFilter implements GatewayFilter {
             final String token = this.getAuthHeader(request);
 
             if (jwtUtil.isInvalid(token)) {
+                log.info("forbidden");
                 return this.onError(exchange, HttpStatus.FORBIDDEN);
             }
 
             this.updateRequest(exchange, token);
         }
+
         return chain.filter(exchange);
     }
 

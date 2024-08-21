@@ -42,7 +42,7 @@ public class Account extends AggregateRoot<AccountId> implements UserDetails {
     }
 
     @Override
-    public Collection<Authority> getAuthorities() {
+    public List<Authority> getAuthorities() {
         return authorities;
     }
 

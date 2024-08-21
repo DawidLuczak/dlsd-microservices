@@ -21,7 +21,6 @@ import java.net.URI;
 import java.util.List;
 
 @Slf4j
-@CrossOrigin
 @RestController
 @RequestMapping(value="/auth", produces = "application/vnd.api.v1+json")
 @RequiredArgsConstructor

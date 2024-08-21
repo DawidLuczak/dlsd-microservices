@@ -10,13 +10,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import pl.dlsd.profile.system.account.service.domain.JwtService;
 import pl.dlsd.profile.system.account.service.domain.UserDetailsServiceImpl;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
     @Autowired

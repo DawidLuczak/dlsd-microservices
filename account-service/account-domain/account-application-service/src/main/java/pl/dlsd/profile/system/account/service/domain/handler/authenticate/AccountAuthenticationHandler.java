@@ -18,6 +18,7 @@ public class AccountAuthenticationHandler {
         return AuthenticateAccountResponse.builder()
                 .token(jwtToken)
                 .expiresIn(jwtService.getJwtExpirationMs())
+                .username(authentication.getName())
                 .build();
     }
 }

@@ -42,30 +42,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(localeChangeInterceptor());
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        String[] allowDomains = new String[3];
-        allowDomains[0] = env.getProperty("services.host");
-        allowDomains[1] = env.getProperty("services.profile-system-web-app");
-        allowDomains[2] = env.getProperty("services.api-gateway");
-        registry.addMapping("/**").allowedOrigins(allowDomains);
-    }
-
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer()
-//    {
-//        String[] allowDomains = new String[2];
-//        allowDomains[0] = env.getProperty("services.host");
-//        allowDomains[1] = env.getProperty("services.profile-system-web-app");
-//
-//        return new WebMvcConfigurer() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/**").allowedOrigins(allowDomains);
-//            }
-//        };
-//    }
-
     @Controller
     static class FaviconController {
         @RequestMapping("favicon.ico")

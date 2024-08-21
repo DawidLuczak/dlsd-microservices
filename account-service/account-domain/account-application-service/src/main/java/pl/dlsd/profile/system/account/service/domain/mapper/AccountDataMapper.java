@@ -14,6 +14,7 @@ import pl.dlsd.profile.system.account.service.domain.valueobject.Credentials;
 import pl.dlsd.profile.system.utils.RandomUtil;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -30,6 +31,7 @@ public class AccountDataMapper {
                                 createAccountCommand.getEmail(),
                                 passwordEncoder.encode(createAccountCommand.getPassword())))
                 .activationKey(RandomUtil.generateActivationKey())
+                .authorities(List.of())
                 .build();
     }
 
@@ -46,6 +48,7 @@ public class AccountDataMapper {
                 .createdAt(account.getCreatedAt())
                 .active(true)
                 .activationKey(null)
+                .authorities(account.getAuthorities())
                 .build();
     }
 }
